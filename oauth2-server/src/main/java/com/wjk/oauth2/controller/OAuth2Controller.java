@@ -42,8 +42,9 @@ public class OAuth2Controller {
     }
 
     @GetMapping("authorize")
-    public String authorize(String response_type,String client_id,String redirect_url,String token){
+    public String authorize(String response_type,String client_id,String redirect_url){
         if("code".equals(response_type)){
+            String token = "mytoken";
             Object cacheObject = redisService.getCacheObject(token);
             if(cacheObject!=null){
                 Map<String, String> clientMode = clientModeMap.get(client_id);
